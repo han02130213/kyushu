@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>自駕遊北九州 - 隨身旅遊手冊</title>
+    <style>
+        :root {
+            --bg-color: #f4ebe1;
+            --card-bg: #fdfaf4;
+            --primary: #7e9a76;
+            --secondary: #d9a081;
+            --text-main: #5a4b41;
+            --text-light: #8e7a6e;
+            --accent-yellow: #f4ebd0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-main); -webkit-font-smoothing: antialiased; }
+        .container { max-width: 500px; margin: 0 auto; background: var(--card-bg); min-height: 100vh; box-shadow: 0 0 15px rgba(90,75,65,0.1); padding-bottom: 40px; position: relative; }
+        .main-banner { background: #bfe3dd; text-align: center; padding: 35px 20px; border-bottom: 4px dashed var(--secondary); position: relative; }
+        .banner-title { font-size: 24px; font-weight: bold; color: #435e55; letter-spacing: 2px; margin: 0; }
+        .banner-sub { font-size: 14px; color: #5a7a70; margin-top: 5px; font-weight: 500; }
+        .nav-tabs { display: flex; background: #e8ded1; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #dfd2c0; overflow-x: auto; white-space: nowrap; }
+        .tab-btn { flex: 1; min-width: 75px; text-align: center; padding: 14px 5px; border: none; background: none; font-size: 14px; font-weight: bold; color: var(--text-light); cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { color: #fff; background: var(--primary); font-size: 15px; }
+        .content-section { display: none; padding: 15px; }
+        .content-section.active { display: block; }
+        .section-header { font-size: 18px; font-weight: bold; color: #fff; background: var(--secondary); padding: 8px 15px; border-radius: 30px; margin: 15px 0 10px 0; display: inline-block; box-shadow: 2px 2px 0px rgba(0,0,0,0.05); }
+        .info-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 15px; border: 2px solid #eee4d6; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .card-inner-title { font-size: 16px; font-weight: bold; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; border-bottom: 2px dashed #f0e6d8; padding-bottom: 6px; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; align-items: baseline; }
+        .info-label { color: var(--text-light); font-weight: 500; min-width: 70px; }
+        .info-value { font-weight: bold; text-align: right; color: var(--text-main); }
+        .alert-box { background: #fdf6ec; border-left: 4px solid #e6a23c; padding: 10px; border-radius: 6px; font-size: 13px; color: #c07716; margin-top: 10px; line-height: 1.4; }
+        .timeline { margin-top: 10px; border-left: 3px dashed var(--primary); padding-left: 18px; margin-left: 12px; }
+        .time-node { position: relative; margin-bottom: 18px; }
+        .time-node::before { content: '•'; position: absolute; left: -24px; top: -3px; background: var(--card-bg); color: var(--secondary); font-size: 24px; width: 12px; height: 12px; text-align: center; line-height: 12px; }
+        .time-str { font-weight: bold; color: var(--secondary); font-size: 14px; background: #fff; padding: 1px 6px; border-radius: 10px; border: 1px solid #ebdccb; }
+        .spot-name { font-weight: bold; font-size: 15px; margin: 4px 0 2px 0; color: var(--text-main); }
+        .spot-desc { font-size: 12px; color: var(--text-light); line-height: 1.4; }
+        .badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; text-align: center; }
+        .badge-item { background: #f0ede4; padding: 6px; border-radius: 8px; font-size: 11px; font-weight: bold; color: var(--text-main); }
+        .bottom-note { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 30px; border-top: 1px dashed #dcd1c4; padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="main-banner">
+        <div class="banner-title">自駕遊北九州 🚗</div>
+        <div class="banner-sub">九州親子之旅 • 6天5夜隨身手冊</div>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('flight')">✈️ 航班</button>
+        <button class="tab-btn" onclick="switchTab('hotel')">🏨 訂房</button>
+        <button class="tab-btn" onclick="switchTab('car')">🚗 租車</button>
+        <button class="tab-btn" onclick="switchTab('itinerary')">🗓️ 行程</button>
+    </div>
+
+    <div id="flight" class="content-section active">
+        <div class="section-header">去程航班 (2026/06/04 四)</div>
+        <div class="info-card">
+            <div class="card-inner-title">🛫 中華航空 CI 0194</div>
+            <div class="info-row"><span class="info-label">出發地</span><span class="info-value">14:30 臺北桃園 (TPE)</span></div>
+            <div class="info-row"><span class="info-label">目的地</span><span class="info-value">17:40 熊本機場 (KMJ)</span></div>
+            <div class="info-row"><span class="info-label">飛行時間</span><span class="info-value">約 3 小時 10 分鐘</span></div>
+            <div class="info-row"><span class="info-label">托運行李</span><span class="info-value">每人 1 件 (23kg 以內)</span></div>
+            <div class="info-row"><span class="info-label">手提行李</span><span class="info-value">每人 1 件 + 1 個隨身小包</span></div>
+        </div>
+
+        <div class="section-header">回程航班 (2026/06/09 二)</div>
+        <div class="info-card">
+            <div class="card-inner-title">🛬 中華航空 CI 0117</div>
+            <div class="info-row"><span class="info-label">出發地</span><span class="info-value">21:00 福岡機場 (FUK)</span></div>
+            <div class="info-row"><span class="info-label">目的地</span><span class="info-value">22:30 臺北桃園 (TPE)</span></div>
+            <div class="info-row"><span class="info-label">飛行時間</span><span class="info-value">約 2 小時 30 分鐘</span></div>
+            <div class="info-row"><span class="info-label">托運行李</span><span class="info-value">每人 2 件 (23kg 以內) 🧳🧳</span></div>
+        </div>
+
+        <div class="alert-box">
+            💡 <b>貼心小提醒：</b><br>
+            建議提前 2～3 小時抵達機場報到。護照、機票、訂房確認單請隨身攜帶！出發前記得購買旅遊平安保險。
+        </div>
+    </div>
+
+    <div id="hotel" class="content-section">
+        <div class="section-header">住宿資訊總覽</div>
+        
+        <div class="info-card">
+            <div class="card-inner-title">🏠 1. HOTEL MYSTAYS Kumamoto Riverside</div>
+            <div class="info-row"><span class="info-label">入住日期</span><span class="info-value">6/4 (四) ～ 6/6 (六) • 2晚</span></div>
+            <div class="info-row"><span class="info-label">訂房確認碼</span><span class="info-value" style="color:#e63946;">6045.475.221</span></div>
+            <div class="info-row"><span class="info-label">PIN 碼</span><span class="info-value" style="color:#e63946;">9906</span></div>
+            <div class="info-row"><span class="info-label">房間/人數</span><span class="info-value">1間 / 4位成人</span></div>
+            <div class="spot-desc" style="margin-top:8px;">📍 中央区紺屋今町4番12号, 熊本市<br>🚗 附近停車：辛島公園地下停車場 (24h/Max ¥1,200)</div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-inner-title">🏠 2. Apartment Hotel YAEZAKI</div>
+            <div class="info-row"><span class="info-label">入住日期</span><span class="info-value">6/6 (六) ～ 6/7 (日) • 1晚</span></div>
+            <div class="info-row"><span class="info-label">訂房確認碼</span><span class="info-value" style="color:#e63946;">5120.346.258</span></div>
+            <div class="info-row"><span class="info-label">PIN 碼</span><span class="info-value" style="color:#e63946;">8152</span></div>
+            <div class="info-row"><span class="info-label">房間/人數</span><span class="info-value">2間 / 4位成人</span></div>
+            <div class="spot-desc" style="margin-top:8px;">📍 別府市北浜2-9-1<br>🚗 飯店停車：有 (需預約，每晚 ¥1,200)</div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-inner-title">🏠 3. Hotel Vista Fukuoka Nakasu-Kawabata</div>
+            <div class="info-row"><span class="info-label">入住日期</span><span class="info-value">6/7 (日) ～ 6/9 (二) • 2晚</span></div>
+            <div class="info-row"><span class="info-label">訂房確認碼</span><span class="info-value" style="color:#e63946;">5377.419.252</span></div>
+            <div class="info-row"><span class="info-label">PIN 碼</span><span class="info-value" style="color:#e63946;">0239</span></div>
+            <div class="info-row"><span class="info-label">房間/人數</span><span class="info-value">2間 / 4位成人</span></div>
+            <div class="spot-desc" style="margin-top:8px;">📍 博多区上川端町14-28, 福岡市<br>🚗 飯店停車：有 (需預約，每晚 ¥1,500)</div>
+        </div>
+    </div>
+
+    <div id="car" class="content-section">
+        <div class="section-header">Budget 租車資訊 🚗</div>
+        <div class="info-card">
+            <div class="info-row"><span class="info-label">預約號碼</span><span class="info-value">143175241</span></div>
+            <div class="info-row"><span class="info-label">車輛車型</span><span class="info-value">Serena 同等級 (WA) _SP</span></div>
+            <div class="info-row"><span class="info-label">車廂規格</span><span class="info-value">【禁菸車】🚭</span></div>
+            <div class="info-row"><span class="info-label">取車時間</span><span class="info-value">2026/06/04 (四) 18:30 @熊本機場</span></div>
+            <div class="info-row"><span class="info-label">還車時間</span><span class="info-value">2026/06/09 (二) 18:00 @福岡機場店</span></div>
+        </div>
+
+        <div class="alert-box">
+            ⚠️ <b>租車注意事項：</b><br>
+            1. 必須攜帶<b>台灣駕照正本 + 日本譯本</b>！<br>
+            2. 取車時油量滿，還車前記得加滿油。<br>
+            3. 日本為左側行駛，請遵守交通規則、注意速限。
+        </div>
+    </div>
+
+    <div id="itinerary" class="content-section">
+        <div class="section-header">DAY 01 • 6/4 (四) 熊本</div>
+        <div class="timeline">
+            <div class="time-node"><span class="time-str">17:40</span><div class="spot-name">抵達熊本機場</div></div>
+            <div class="time-node"><span class="time-str">18:30</span><div class="spot-name">Budget 租車取車</div><div class="spot-desc">辦理取車手續，出發前往飯店。</div></div>
+            <div class="time-node"><span class="time-str">20:00</span><div class="spot-name">MYSTAYS 熊本江濱酒店 Check-in</div></div>
+            <div class="time-node"><span class="time-str">20:45</span><div class="spot-name">熊本屋台村吃晚餐 🍜</div><div class="spot-desc">體驗熊本夜生活，品嚐在地美食。</div></div>
+        </div>
+
+        <div class="section-header">DAY 02 • 6/5 (五) 宮崎・阿蘇</div>
+        <div class="timeline">
+            <div class="time-node"><span class="time-str">10:31</span><div class="spot-name">高千穗神社 ⛩️</div><div class="spot-desc">擁有超過1900年歷史的古老神社。</div></div>
+            <div class="time-node"><span class="time-str">11:15</span><div class="spot-name">高千穗峽</div><div class="spot-desc">划船體驗，近距離欣賞震撼的真名井瀑布。</div></div>
+            <div class="time-node"><span class="time-str">12:34</span><div class="spot-name">上色見熊野座神社</div><div class="spot-desc">神祕的參道，美到讓人屏息。</div></div>
+            <div class="time-node"><span class="time-str">14:05</span><div class="spot-name">阿蘇中岳火山口 🌋</div><div class="spot-desc">近距離感受火山口的震撼與壯麗。</div></div>
+            <div class="time-node"><span class="time-str">17:19</span><div class="spot-name">熊本城</div></div>
+        </div>
+
+        <div class="section-header">DAY 03 • 6/6 (六) 由布院・別府</div>
+        <div class="timeline">
+            <div class="time-node"><span class="time-str">10:34</span><div class="spot-name">九州自然動物園 🦁</div><div class="spot-desc">搭乘叢林巴士，體驗近距離餵食猛獸！</div></div>
+            <div class="time-node"><span class="time-str">14:01</span><div class="spot-name">Yufuin Onsen 湯之坪街道</div><div class="spot-desc">散步童話小鎮，享用布丁、起司蛋糕。</div></div>
+            <div class="time-node"><span class="time-str">16:25</span><div class="spot-name">金鱗湖</div><div class="spot-desc">湖光山色美如畫，必訪景點！</div></div>
+            <div class="time-node"><span class="time-str">18:26</span><div class="spot-name">APARTMENT HOTEL 入住 (別府)</div></div>
+        </div>
+
+        <div class="section-header">DAY 04 • 6/7 (日) 福岡</div>
+        <div class="timeline">
+            <div class="time-node"><span class="time-str">10:44</span><div class="spot-name">門司港懷舊區 ⚓</div></div>
+            <div class="time-node"><span class="time-str">14:13</span><div class="spot-name">糸島二見浦夫婦岩 🌊</div></div>
+            <div class="time-node"><span class="time-str">18:32</span><div class="spot-name">博多祇園 鐵鍋煎餃 🥟</div></div>
+            <div class="time-node"><span class="time-str">19:48</span><div class="spot-name">博多運河城 🛍️</div></div>
+        </div>
+
+        <div class="section-header">DAY 05 • 6/8 (一) 柳川・福岡</div>
+        <div class="timeline">
+            <div class="time-node"><span class="time-str">12:19</span><div class="spot-name">太宰府天滿宮 ⛩️</div></div>
+            <div class="time-node"><span class="time-str">15:24</span><div class="spot-name">柳川觀光開發乘船場 🚣</div></div>
+            <div class="time-node"><span class="time-str">16:27</span><div class="spot-name">元祖本吉屋 本店（鰻魚飯）🍛</div></div>
+            <div class="time-node"><span class="time-str">21:29</span><div class="spot-name">天神地下街 逛街購物</div></div>
+        </div>
+
+        <div class="section-header">DAY 06 • 6/9 (二) 福岡自由行</div>
+        <div class="timeline">
+            <div class="time-node"><span class="time-str">09:10</span><div class="spot-name">博多車站 購買伴手禮 🎁</div></div>
+            <div class="time-node"><span class="time-str">14:46</span><div class="spot-name">LaLaport 福岡（看 1:1 鋼彈）🤖</div></div>
+            <div class="time-node"><span class="time-str">18:00</span><div class="spot-name">福岡機場還車</div></div>
+            <div class="time-node"><span class="time-str">21:00</span><div class="spot-name">搭機返回台灣，期待下次再見！✈️</div></div>
+        </div>
+
+        <div class="bottom-note">祝 旬寶 一家旅途愉快，平安順利！❤️</div>
+    </div>
+</div>
+
+<script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+</body>
+</html>
